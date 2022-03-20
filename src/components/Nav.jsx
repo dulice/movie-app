@@ -4,8 +4,9 @@ import { RiMovie2Line } from 'react-icons/ri';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Nav, Navbar, Container} from "react-bootstrap";
 
-const Nav = () => {
+const Navs = () => {
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
 
@@ -15,9 +16,9 @@ const Nav = () => {
         setSearch("");
     }
   return (
-    <div className="container-fluid nav py-1 shadow">
-        <div className="container">
-            <div className="d-flex justify-content-between align-items-center flex-wrap">
+      <Navbar expand="lg" collapseOnSelect="true" sticky="top" className="shadow" bg="light" >
+        <Container>
+            <Navbar.Brand className="d-flex justify-content-between align-items-center">
                 <FormStyle onSubmit={handleSubmit}>
                     <BiSearch />
                     <input 
@@ -25,27 +26,37 @@ const Nav = () => {
                         onChange={(e) => setSearch(e.target.value)}
                     type="text" placeholder="Search..." />
                 </FormStyle>
-                <div className="d-flex align-items-center">
-                    <NLink to="/" className="ms-3 d-flex align-items-center">
-                        <BiHomeCircle />
-                        <h6 className="m-0">Home</h6>
-                    </NLink>
-                    <NLink to="/movies" className="ms-3 d-flex align-items-center">
-                        <BiCameraMovie />
-                        <h6 className="m-0">Movie</h6>
-                    </NLink>
-                    <NLink to="/tvshow" className="ms-3 d-flex align-items-center">
-                        <RiMovie2Line />
-                        <h6 className="m-0">TV shows</h6>
-                    </NLink>
-                    
-                    <NLink to="/signin" className="ms-3 d-flex align-items-center">
-                        <h6 className="m-0">Sign In</h6>
-                    </NLink>
-                </div>
-            </div>
-        </div>
-    </div>
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+            <Navbar.Collapse >
+                <Nav>
+                    <Nav.Link>
+                        <NLink to="/" className="ms-3 d-flex align-items-center">
+                            <BiHomeCircle />
+                            <h6 className="m-0">Home</h6>
+                        </NLink> 
+                    </Nav.Link>
+                    <Nav.Link>
+                        <NLink to="/movies" className="ms-3 d-flex align-items-center">
+                            <BiCameraMovie />
+                            <h6 className="m-0">Movie</h6>
+                        </NLink>
+                    </Nav.Link>
+                    <Nav.Link>
+                        <NLink to="/tvshow" className="ms-3 d-flex align-items-center">
+                            <RiMovie2Line />
+                            <h6 className="m-0">TV shows</h6>
+                        </NLink>
+                    </Nav.Link>
+                    <Nav.Link>
+                        <NLink to="/signin" className="ms-3 d-flex align-items-center">
+                            <h6 className="m-0">Sign In</h6>
+                        </NLink>
+                    </Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+        </Container>
+    </Navbar>
   )
 }
 
@@ -62,6 +73,7 @@ const FormStyle = styled.form`
         outline: none;
         margin-left: .5rem;
         color: white;
+        font-size: .95rem;
     }
     svg {
         color: white;
@@ -80,4 +92,4 @@ const NLink = styled(NavLink)`
     }
 `
 
-export default Nav
+export default Navs

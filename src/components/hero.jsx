@@ -25,7 +25,7 @@ const Hero = () => {
     className="">
         {hero.map((movie) => {
             return (
-                <SplideSlide key={movie.id} className="container-fluid vh-100" style={{backgroundImage: `url(${imagePath}${movie.backdrop_path})`}}
+                <SplideSlide key={movie.id} className="container-fluid hero" style={{backgroundImage: `url(${imagePath}${movie.backdrop_path})`}}
                 >
                     <div className="row d-flex align-items-center justify-content-between h-100">
                         <div className="col-12 col-md-5 ms-5">

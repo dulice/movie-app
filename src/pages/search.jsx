@@ -25,7 +25,7 @@ const TopRated = () => {
             <div className="row">
                 {TopRated.map((movie) => {
                     return (
-                        <MCard className="col-3 mb-4" key={movie.id}>
+                        <MCard className="col-12 col-md-3 mb-4" key={movie.id}>
                             <div className="card rounded shadow">
                                 <div className="card-body position-relative">
                                     <span>
