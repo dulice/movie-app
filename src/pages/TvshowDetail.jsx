@@ -18,7 +18,7 @@ const Detail = () => {
     },[params.id]);
   return (
     <div className="">
-        <div key={details.id} className="container-fluid vh-100 detail-hero" style={{background: `url(${imagePath}${details.backdrop_path})`}}>
+        <div key={details.id} className="container-fluid vh-100 detail-hero" style={{background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(${imagePath}${details.backdrop_path})`}}>
                     <div className="container">
                         <div className="row d-flex align-items-center vh-100">
                             <div className="col-12 col-md-5 text-white">
@@ -32,22 +32,13 @@ const Detail = () => {
                                     </div>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center my-3">
-                                    <button className="btn btn-outline-dark">
+                                    <button className="btn btn-success" disabled>
                                         <p className="m-0">Total episode - {details.number_of_episodes}</p>
                                     </button>
-                                    <button className="btn btn-outline-dark">
+                                    <button className="btn btn-success" disabled>
                                         <p className="m-0">Total seasons - {details.number_of_seasons}</p>
                                     </button>
                                 </div>
-                                {/* <div className="d-flex align-items-center">
-                                    {details.genres.map(detail => {
-                                        return (
-                                            <div key={detail.id} className="me-3 mb-3">
-                                                <button className="btn btn-outline-dark">{detail.name}</button>
-                                            </div>
-                                        )
-                                    })}
-                                </div> */}
                                 <Link to={`/trailer/${details.id}`}>
                                     <button className="btn btn-dark">Watch Trailer</button>
                                 </Link>

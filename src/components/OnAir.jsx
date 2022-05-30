@@ -27,7 +27,7 @@ const OnAir = () => {
             options={{
                  gap: "1rem",
                  autoplay: true,
-                 pagination: "false",
+                 pagination: false,
                  perPage: 3,
                  type: "loop",
              }}
@@ -77,6 +77,7 @@ const MCard = styled(SplideSlide)`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     span {
       display: block;
+      color: white;
     }
   }
 `

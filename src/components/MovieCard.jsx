@@ -13,7 +13,7 @@ const MovieCard = ({movie}) => {
       <Link to={`/detail/${movie.id}`} className="text-decoration-none">
         <div className="card rounded shadow">
           <div className="card-body position-relative">
-              <span>
+              <span className='text-white'>
                 <BsFillPlayCircleFill/>
               </span>
               {movie.poster_path? <img className="w-100 rounded" src={`${imagePath}${movie.poster_path}`} alt={movie.title} /> : (<div className="movie-cover"><p >movie image unavalible</p></div>)}
@@ -50,6 +50,7 @@ const MCard = styled(SplideSlide)`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     span {
       display: block;
+      color: white !important;
     }
   }
 `

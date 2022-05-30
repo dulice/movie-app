@@ -23,7 +23,7 @@ const Upcoming = () => {
              options={{
                  gap: "1rem",
                  autoplay: true,
-                 pagination: "false",
+                 pagination: false,
                  perPage: 4,
                  type: "loop",
              }} className="row">

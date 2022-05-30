@@ -39,6 +39,6 @@ code {
 
 .hero {
   height: 90vh;
-  background-position: center;
-  background-size: cover;
+  background-position: center !important;
+  background-size: cover !important;
 }

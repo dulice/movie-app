@@ -18,7 +18,7 @@ const Detail = () => {
     },[params.id]);
   return (
     <div className="">
-        <div key={details.id} className="container-fluid vh-100 detail-hero" style={{background: `url(${imagePath}${details.backdrop_path})`}}>
+        <div key={details.id} className="container-fluid vh-100 detail-hero" style={{background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(${imagePath}${details.backdrop_path})`}}>
                     <div className="container">
                         <div className="row d-flex align-items-center vh-100">
                             <div className="col-12 col-md-5 text-white">
