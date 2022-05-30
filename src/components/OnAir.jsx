@@ -29,6 +29,11 @@ const OnAir = () => {
                  autoplay: true,
                  pagination: false,
                  perPage: 3,
+                 breakpoints: {
+                    640: {
+                      perPage: 1
+                    }
+                  },
                  type: "loop",
              }}
              className="row">

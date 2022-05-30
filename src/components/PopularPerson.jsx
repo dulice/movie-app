@@ -22,8 +22,16 @@ const PopularPerson = () => {
              options={{
                  gap: "1rem",
                  autoplay: true,
-                 pagination: "false",
+                 pagination: false,
                  perPage: 4,
+                 breakpoints: {
+                    830: {
+                       perPage: 3
+                    },
+                   640: {
+                     perPage: 1
+                   }
+                 },
                  type: "loop",
              }}
              className="row">

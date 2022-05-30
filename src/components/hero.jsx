@@ -11,7 +11,7 @@ const Hero = () => {
         const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}`);
         const data = await res.json();
         console.log(data.results);
-        setHero(data.results);
+        // setHero(data.results);
         setLoading(false);
     }
     useEffect(() => {
