@@ -24,20 +24,20 @@ const Upcoming = () => {
                  gap: "1rem",
                  autoplay: true,
                  pagination: false,
-                 perPage: 4,
+                 perPage: 5,
                  breakpoints: {
-                     830: {
-                        perPage: 3
+                     780: {
+                        perPage: 4
                      },
                     640: {
-                      perPage: 1
+                      perPage: 2
                     }
                   },
                  type: "loop",
              }} className="row">
                 {Upcoming.map((movie) => {
                     return (
-                        <MovieCard key={movie.id} movie={movie}/>
+                        <MovieCard key={movie.id} movie={movie} link="/detail"/>
                     )
                 })}
             </Splide>

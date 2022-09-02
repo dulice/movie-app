@@ -20,7 +20,7 @@ const TopRated = () => {
             <div className="row">
                 {TopRated.map((movie) => {
                     return (
-                        <MovieCard key={movie._id} movie={movie}/>
+                        <MovieCard key={movie._id} movie={movie} link="/detail"/>
                     )
                 })}
             </div>

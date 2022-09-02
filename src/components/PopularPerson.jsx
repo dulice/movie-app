@@ -23,13 +23,13 @@ const PopularPerson = () => {
                  gap: "1rem",
                  autoplay: true,
                  pagination: false,
-                 perPage: 4,
+                 perPage: 5,
                  breakpoints: {
-                    830: {
-                       perPage: 3
+                    780: {
+                       perPage: 4
                     },
                    640: {
-                     perPage: 1
+                     perPage: 2
                    }
                  },
                  type: "loop",
@@ -40,7 +40,7 @@ const PopularPerson = () => {
                         <SplideSlide key={person.id} className="col-6 col-md-3">
                             <div className="">
                                 <div className="text-center">
-                                    <img className=" rounded-circle" src={`${imagePath}${person.profile_path}`} alt={person.name} />
+                                    <img className=" rounded-circle person-img" src={`${imagePath}${person.profile_path}`} alt={person.name} />
                                 </div>
                                 <h6 className="text-center mt-3">{person.name}</h6>
                             </div>

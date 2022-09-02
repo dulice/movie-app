@@ -20,7 +20,7 @@ const Trending = () => {
             <div className="row">
                 {trending.map((movie) => {
                     return (
-                        <MovieCard key={movie.id} movie={movie} />
+                        <MovieCard key={movie.id} movie={movie} link="/detail" />
                     )
                 })}
             </div>

@@ -26,18 +26,18 @@ const Latest = () => {
                  pagination: false,
                  perPage: 4,
                  breakpoints: {
-                    830: {
-                       perPage: 3
+                    780: {
+                       perPage: 4
                     },
                    640: {
-                     perPage: 1
+                     perPage: 2
                    }
                  },
                  type: "loop",
              }} className="row">
                 {latest.map((movie) => {
                     return (
-                        <MovieCard key={movie.id} movie={movie}/>
+                        <MovieCard key={movie.id} movie={movie} link="/detail"/>
                     )
                 })}
             </Splide>
