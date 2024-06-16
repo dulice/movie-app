@@ -1,40 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-import ReactPlayer from 'react-player'
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
+import { Card, Container } from "react-bootstrap";
+import { RiArrowLeftLine } from "react-icons/ri";
+import ReactPlayer from "react-player";
+import { apiKey, fetcher } from "../api/utils";
+import useSWR from "swr";
+import Error from "../components/Error";
 
 const Trailer = () => {
-    const [trailer, setTrailer] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const params = useParams();
-    const fetchTrailer = async(index) => {
-        const res = await fetch(`https://api.themoviedb.org/3/tv/${index}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
-        const data = await res.json();
-        // console.log(data.results[0].key)
-        setTrailer(data);
-        setLoading(false);
-    }
-    useEffect(() => {
-        fetchTrailer(params.movie)
-    },[params.movie]);
+  const params = useParams();
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const getType = new URLSearchParams(search).get("type");
 
+  const {
+    data: trailer,
+    isLoading,
+    isError,
+    error,
+  } = useSWR(`/${getType}/${params.movie}/videos${apiKey}`, fetcher);
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
   return (
-    <div>
-      {loading ?
-       (<h4>Loading...</h4>):
-       (
-         <div className="contaner-fluid pt-5">
-            <ReactPlayer
-              url={`https://youtu.be/${trailer.results[0].key}`}
-              controls = {false}
-              width = "100%"
-              height = "90vh"
-              playing = {true}
+    <Container>
+      <Card>
+        <Card.Body>
+          <Card.Title>
+            <RiArrowLeftLine onClick={() => navigate(-1)} />
+          </Card.Title>
+          <ReactPlayer
+            url={`https://youtu.be/${trailer.results[0]?.key}`}
+            controls={true}
+            width="100%"
+            height="80vh"
+            playing={false}
           />
-        </div>
-       )
-     }
-    </div>
-  )
-}
+        </Card.Body>
+      </Card>
+    </Container>
+  );
+};
 
-export default Trailer
+export default Trailer;

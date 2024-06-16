@@ -1,49 +1,51 @@
-import React, {useState, useEffect} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css"
-import { Splide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/splide.min.css';
-import MovieCard from './MovieCard'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Splide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
+import MovieCard from "./MovieCard";
+import { apiKey, fetcher } from "../api/utils";
+import Loading from "./Loading";
+import useSWR from "swr";
+import Error from "./Error";
 
 const Upcoming = () => {
-    const [Upcoming, setUpcoming] = useState([]);
-    const fetchUpcoming = async () => {
-        const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}`);
-        const data = await res.json();
-        // console.log(data.results);
-        setUpcoming(data.results);
-    }
-    useEffect(() => {
-        fetchUpcoming();
-    },[]);
+  const {
+    data: Upcoming,
+    isLoading,
+    isError,
+    error,
+  } = useSWR(`/movie/upcoming${apiKey}`, fetcher);
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
   return (
     <div className="container-fluid pt-5">
-        <div className="container">
-            <h4 className="py-3">Upcoming</h4>
-            <Splide
-             options={{
-                 gap: "1rem",
-                 autoplay: true,
-                 pagination: false,
-                 perPage: 5,
-                 breakpoints: {
-                     780: {
-                        perPage: 4
-                     },
-                    640: {
-                      perPage: 2
-                    }
-                  },
-                 type: "loop",
-             }} className="row">
-                {Upcoming.map((movie) => {
-                    return (
-                        <MovieCard key={movie.id} movie={movie} link="/detail"/>
-                    )
-                })}
-            </Splide>
-        </div>
+      <div className="container">
+        <h4 className="py-3">Upcoming</h4>
+        <Splide
+          options={{
+            gap: "1rem",
+            autoplay: true,
+            pagination: false,
+            perPage: 5,
+            breakpoints: {
+              780: {
+                perPage: 4,
+              },
+              640: {
+                perPage: 2,
+              },
+            },
+            type: "loop",
+          }}
+          className="row"
+        >
+          {Upcoming.results.map((movie) => {
+            return <MovieCard key={movie.id} movie={movie} type="movie" />;
+          })}
+        </Splide>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Upcoming
+export default Upcoming;

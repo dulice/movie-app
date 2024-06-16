@@ -33,8 +33,7 @@ code {
 }
 
 .detail-hero {
-  background-position: center !important;
-  background-size: cover !important;
+  height: 80vh;
 }
 
 .hero {

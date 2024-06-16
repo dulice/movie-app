@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Splide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import MovieCard from './MovieCard'
+import useSWR from 'swr';
+import { apiKey, fetcher } from '../api/utils';
+import Loading from './Loading';
+import Error from './Error';
 
 const OnAir = () => {
-    const [OnAir, setOnAir] = useState([]);
-    const fetchOnAir = async () => {
-        const res = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}`);
-        const data = await res.json();
-        // console.log(data.results);
-        setOnAir(data.results);
-    }
-    useEffect(() => {
-        fetchOnAir();
-    },[]);
+  const {data: OnAir, isLoading, isError } = useSWR(`/tv/on_the_air${apiKey}`, fetcher);
+
+    if(isLoading) return <Loading />
+    if(isError) return <Error />
    return (
     <div className="container-fluid pt-5">
         <div className="container">
@@ -36,9 +34,9 @@ const OnAir = () => {
                  type: "loop",
              }}
              className="row">
-                {OnAir.map((movie) => {
+                {OnAir.results.map((movie) => {
                     return (
-                      <MovieCard key={movie.id} movie={movie} link="/tvshowdetail"/>
+                      <MovieCard key={movie.id} movie={movie} type="tv"/>
                     )
                 })}
             </Splide>

@@ -37,7 +37,7 @@ const Latest = () => {
              }} className="row">
                 {latest.map((movie) => {
                     return (
-                        <MovieCard key={movie.id} movie={movie} link="/detail"/>
+                        <MovieCard key={movie.id} movie={movie} type="movie"/>
                     )
                 })}
             </Splide>
